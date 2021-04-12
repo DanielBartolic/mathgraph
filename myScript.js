@@ -1,6 +1,9 @@
 var canvas = document.getElementById('myCanvas'),
 outputRoot = document.getElementById("root"),
+
 c = canvas.getContext('2d'),
+grid = false,
+
 
 canvas_height = canvas.height,
 canvas_width = canvas.width,
@@ -35,6 +38,9 @@ function draw(){
   drawLimits();
 }
 
+
+
+
 function calcRoots(){
   
   try {
@@ -47,6 +53,7 @@ function calcRoots(){
 }
 
 function drawGrid(){
+  if(grid){
   for(var i=0; i<=num_lines_x; i++) {
     c.beginPath();
     c.lineWidth = 1;
@@ -66,6 +73,7 @@ function drawGrid(){
     }
     c.stroke();
     }
+  }
 }
 
 
@@ -195,6 +203,7 @@ function evaluateMathExpr(mathX){
 
 function initTextField(){
     var input = $('#inputFieldFunction');
+    
 
       // Set the initial text value programmatically using jQuery.
       input.val(expr);
@@ -205,6 +214,16 @@ function initTextField(){
         tree = math.parse(expr,scope);
         draw();
       });
+}
+
+function cbFunction() {
+  var gridCB = document.getElementById('cbShowGrid');
+  if (gridCB.checked == true){
+        grid = true;
+  } else {
+     grid = false;
+  }
+  draw();
 }
 
 // function initTextFieldLines(){
