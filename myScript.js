@@ -149,7 +149,7 @@ yMax = 1 * coordinateSystemSizeY;
 
 
     c.beginPath();
-    c.lineWidth = 3;
+    c.lineWidth = 2.5;
     c.strokeStyle = color;
 
     for(i = 0; i < n; i++){
