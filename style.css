@@ -1,16 +1,21 @@
-canvas {
-    position: absolute;
-    top: 10%;
-    left: 0;
+#gx{
+    visibility: hidden;
+}
+#ix{
+    visibility: hidden;
+}
+#hx{
+    visibility: hidden;
 }
 
-.canvas{
-    width: auto;
-    height: auto;
-    margin: auto;
+#rangeK{
+    visibility: hidden;
 }
 
-.input{
-    width: auto;
-    height: auto;
+#rangeL{
+    visibility: hidden;
 }
+
+/* body{
+    background-color: rgb(83, 6, 155);
+} */

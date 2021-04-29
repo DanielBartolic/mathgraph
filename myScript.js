@@ -1,8 +1,25 @@
 var canvas = document.getElementById('myCanvas'),
-outputRoot = document.getElementById("root"),
+fgx = document.getElementById('gx'),
+fhx = document.getElementById('hx'),
+fix = document.getElementById('ix'),
+vRangeK = document.getElementById('rangeK'),
+vRangeL = document.getElementById('rangeL'),
+outputK = document.getElementById('outputK'),
+outputL = document.getElementById('outputL'),
 
 c = canvas.getContext('2d'),
-grid = false,
+grid = true,
+gx = false,
+hx = false,
+ix = false,
+showfxv = true,
+showgxv = true,
+showhxv = true,
+showixv = true,
+rangeK = false,
+rangeL = false,
+variableK = 0,
+variableL = 0,
 
 
 canvas_height = canvas.height,
@@ -21,36 +38,57 @@ coordinateSystemSizeX = x_axis_distance_grid_lines,
 coordinateSystemSizeY = y_axis_distance_grid_lines,
 
 math = mathjs(),
-expr = '3*x+2',
-scope = { x : 0},
-tree = math.parse(expr,scope);
+expr,
+exprgx,
+exprhx,
+exprix,
+scope = { x : 0};
 
-draw();
+
+c.clearRect(0, 0, canvas.width, canvas.height);
+  drawGrid();
+  drawAxis();
 initTextField();
-// initTextFieldLines();
+outputK.innerHTML = variableK;
+outputL.innerHTML = variableL;
 
 function draw(){
-  calcRoots();
+  if(!rangeK)
+    variableK = 0;
+  if(!rangeL)
+    variableL = 0;
+  // calcRoots(expr);
   c.clearRect(0, 0, canvas.width, canvas.height);
   drawGrid();
   drawAxis();
-  drawCurve();
-  drawLimits();
+  if(showfxv){
+  drawCurve(expr,"red");
+  drawLimits(expr);
+  }
+  if(showgxv){
+  drawCurve(exprgx,"blue");
+  drawLimits(exprgx);
+  }
+  if(showhxv){
+  drawCurve(exprhx,"green");
+  drawLimits(exprhx);
+  } 
+  if(showixv){
+  drawCurve(exprix,"yellow");
+  drawLimits(exprix);
+  }
 }
 
 
-
-
-function calcRoots(){
-  
-  try {
-    var sol = nerdamer.solveEquations(expr,'x');
-    outputRoot.textContent = sol.toString();
-  }
-  catch(err) {
-    outputRoot.textContent = 'f(x) has no zeros';
-  }
-}
+// function calcRoots(val){
+//   try {
+//     var sol = nerdamer.solveEquations(val,'x');
+//     outputRoot.textContent = sol.toString();
+//   }
+//   catch(err) {
+//     outputRoot.textContent = 'f(x) has no zeros';
+//   }
+// }
 
 function drawGrid(){
   if(grid){
@@ -91,7 +129,10 @@ function drawAxis(){
 
 
 
-function drawCurve(){
+function drawCurve(val,color){
+    tree = math.parse(val.replace(/k/gi,variableK).replace(/l/gi,variableL),scope);
+
+
 var
 i,xPixel,yPixel,
 percentX,percentY,
@@ -108,7 +149,8 @@ yMax = 1 * coordinateSystemSizeY;
 
 
     c.beginPath();
-    c.strokeStyle = "red";
+    c.lineWidth = 3;
+    c.strokeStyle = color;
 
     for(i = 0; i < n; i++){
         
@@ -144,7 +186,8 @@ yMax = 1 * coordinateSystemSizeY;
     c.stroke();
 }
 
-function drawLimits(){
+function drawLimits(val){
+  tree = math.parse(val.replace(/k/gi,variableK).replace(/l/gi,variableL),scope);
     var
     i,xPixel,yPixel,
     percentX,percentY,
@@ -202,21 +245,40 @@ function evaluateMathExpr(mathX){
 }
 
 function initTextField(){
-    var input = $('#inputFieldFunction');
+    var inputFX = $('#inputFieldFunctionFX');
+    var inputGX = $('#inputFieldFunctionGX');
+    var inputHX = $('#inputFieldFunctionHX');
+    var inputIX = $('#inputFieldFunctionIX');
     
 
       // Set the initial text value programmatically using jQuery.
-      input.val(expr);
+      inputFX.val(expr);
       
       // Listen for changes using jQuery.
-      input.keyup(function (event) {
-        expr = input.val();
-        tree = math.parse(expr,scope);
+      inputFX.keyup(function (event) {
+        expr = inputFX.val();
+        draw();
+      });
+
+      inputGX.keyup(function (event) {
+        exprgx = inputGX.val();
+        draw();
+      });
+
+      inputHX.keyup(function (event) {
+        exprhx = inputHX.val();
+        draw();
+      });
+
+      inputIX.keyup(function (event) {
+        exprix = inputIX.val();
         draw();
       });
 }
 
-function cbFunction() {
+
+
+function cbGridFunction() {
   var gridCB = document.getElementById('cbShowGrid');
   if (gridCB.checked == true){
         grid = true;
@@ -226,19 +288,97 @@ function cbFunction() {
   draw();
 }
 
-// function initTextFieldLines(){
-//     var input = $('#inputFieldLines');
+function showFX(){
+  if(!showfxv){
+    showfxv = true;
+  }else if(showfxv){
+    showfxv = false;
+  }
+  draw();
+}
 
-//       // Set the initial text value programmatically using jQuery.
-//       input.val(n);
-      
-//       // Listen for changes using jQuery.
-//       input.keyup(function (event) {
-//         n = input.val();
-//         n++;
-//         draw();
-//       });
-// }
+function showGX(){
+  if(!showgxv){
+    showgxv = true;
+  }else if(showgxv){
+    showgxv = false;
+  }
+  draw();
+}
+
+function showHX(){
+  if(!showhxv){
+    showhxv = true;
+  }else if(showhxv){
+    showhxv = false;
+  }
+  draw();
+}
+
+function showIX(){
+  if(!showixv){
+    showixv = true;
+  }else if(showixv){
+    showixv = false;
+  }
+  draw();
+}
+
+function addFunctionInput(){
+  if(gx == false){
+    fgx.style.visibility = "visible";
+    gx = true;
+    showgxv = true;
+  }else if(hx == false){
+    fhx.style.visibility = "visible";
+    hx = true;
+    showhxv = true;
+  }else if(ix == false){
+    fix.style.visibility = "visible";
+    ix = true;
+    showixv = true;
+  }
+  draw();
+}
+
+function removeFunctionInput(){
+  if(ix){
+    fix.style.visibility = "hidden";
+    ix = false;
+    showixv = false;
+  }else if(hx){
+    fhx.style.visibility = "hidden";
+    hx = false;
+    showhxv = false;
+  }else if(gx){
+    fgx.style.visibility = "hidden";
+    gx = false;
+    showgxv = false;
+  }
+  draw();
+}
+
+function addVariableInput(){
+  if(rangeK == false){
+    vRangeK.style.visibility = "visible";
+    rangeK = true;
+  }else if(rangeL == false){
+    vRangeL.style.visibility = "visible";
+    rangeL = true;
+  }
+  draw();
+}
+
+function removeVariableInput(){
+  if(rangeL){
+    vRangeL.style.visibility = "hidden";
+    rangeL = false;
+  }else if(rangeK){
+    vRangeK.style.visibility = "hidden";
+    rangeK = false;
+  }
+  draw();
+}
 
 function sliderChange(val) {
   
@@ -254,6 +394,18 @@ function sliderChange(val) {
           }
           variables(val);
           draw();
+}
+
+function changeVariableK(val){
+  variableK = val;
+  outputK.innerHTML = variableK;
+  draw();
+}
+
+function changeVariableL(val){
+  variableL = val;
+  outputL.innerHTML = variableL;
+  draw();
 }
 
 function variables(x){

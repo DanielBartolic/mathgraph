@@ -5,12 +5,12 @@
         <title>Graph Calculator</title>
         <script src="math.min.js"></script>
         <script src="jquery.min.js"></script>
-        <script src="nerdamer/nerdamer.core.js"></script> 
+        <!-- <script src="nerdamer/nerdamer.core.js"></script>  -->
         <!-- LOAD ADD-ONS. These files contain extended functions. See documentation -->
         <!-- again assuming you've saved the files in root -->
-        <script src="nerdamer/Algebra.js"></script>
+        <!-- <script src="nerdamer/Algebra.js"></script>
         <script src="nerdamer/Calculus.js"></script>
-        <script src="nerdamer/Solve.js"></script>
+        <script src="nerdamer/Solve.js"></script> -->
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
@@ -19,9 +19,17 @@
             <canvas width="800" height="800" id="myCanvas"></canvas> 
         </div>
         <div class="input">
-            function f(x) : <input id="inputFieldFunction">
-            show grid : <input type="checkbox" id="cbShowGrid" onclick="cbFunction()">
-            coordinate size : <input type="range" min=1 max=6 value=3 id="range" oninput="sliderChange(this.value)">
+            <div> <button type="button" onclick="addFunctionInput()">+</button> <button type="button" onclick="removeFunctionInput()">-</button> </div>
+            <div id="fx"> function f(x) : <input id="inputFieldFunctionFX"><input type="checkbox" id="cbShowFX" onclick="showFX()" checked></div>
+            <div id="gx"> function g(x) : <input id="inputFieldFunctionGX"><input type="checkbox" id="cbShowGX" onclick="showGX()" checked></div>
+            <div id="hx"> function h(x) : <input id="inputFieldFunctionHX"><input type="checkbox" id="cbShowHX" onclick="showHX()" checked></div>
+            <div id="ix"> function i(x) : <input id="inputFieldFunctionIX"><input type="checkbox" id="cbShowIX" onclick="showIX()" checked></div>
+            <div> <button type="button" onclick="addVariableInput()">+</button> <button type="button" onclick="removeVariableInput()">-</button> </div>
+            <div id="rangeK" > variable k : <input type="range" min=-10 max=10 value=0 id="range" oninput="changeVariableK(this.value)"><span id="outputK"></span></div>
+            <div id="rangeL"> variable l : <input type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableL((this.value/100))"><span id="outputL"></span></div>
+            <div> show grid : <input type="checkbox" id="cbShowGrid" onclick="cbGridFunction()" checked> </div>
+            <div> coordinate size : <input type="range" min=1 max=6 value=3 id="range" oninput="sliderChange(this.value)"> </div>
+            
         </div>
         <div class = "output">
             <p id="root"></p>
