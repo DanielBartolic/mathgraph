@@ -6,6 +6,9 @@ vRangeK = document.getElementById('rangeK'),
 vRangeL = document.getElementById('rangeL'),
 outputK = document.getElementById('outputK'),
 outputL = document.getElementById('outputL'),
+cbgx = document.getElementById('cbShowGX'),
+cbhx = document.getElementById('cbShowHX'),
+cbix = document.getElementById('cbShowIG'),
 
 c = canvas.getContext('2d'),
 grid = true,
@@ -53,6 +56,7 @@ outputK.innerHTML = variableK;
 outputL.innerHTML = variableL;
 
 function draw(){
+  console.log(showgxv);
   if(!rangeK)
     variableK = 0;
   if(!rangeL)
@@ -329,14 +333,20 @@ function addFunctionInput(){
     fgx.style.visibility = "visible";
     gx = true;
     showgxv = true;
+    if (!cbgx.checked)
+      showgxv = false;
   }else if(hx == false){
     fhx.style.visibility = "visible";
     hx = true;
     showhxv = true;
+    if (!cbhx.checked)
+      showhxv = false;
   }else if(ix == false){
     fix.style.visibility = "visible";
     ix = true;
     showixv = true;
+    if (!cbix.checked)
+      showixv = false;
   }
   draw();
 }
