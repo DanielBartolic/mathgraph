@@ -1,80 +1,93 @@
 * {
-    box-sizing: border-box;
     font-family: monospace;
+    
+    
 }
+
+.readme{
+  position: absolute;
+  color: black;
+  top:0;
+  left: 0;
+  background-color: white;
+}
+
+#mydiv {
+  position: absolute;
+  z-index: 9;
+  background-color: #292934;
+  border: 1px solid #d3d3d3;
+  line-height: 3em;
+  
+  /* text-align: center; */
+}
+
+#mydivheader {
+  text-align: center;
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color:blue;
+  color: #fff;
+}
+
+.input{
+  color: rgba(255, 255, 255, 0.7);
+  padding-left: 5% ;
+  display: none;
+}
+
+.row2{
+  width: 100%;
+}
+
+body{
+background-color: #292934;
+}
+
+
 .column1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    float: left;
-    width: 70%;
-    height: 90vh;
-    padding-top: 2%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    overflow: hidden;
   }
 
-  canvas{
-    /* background-color: bisque; */
-  }
 
-  .column2 {
-      /* background-color: beige; */
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    float: left;
-    width: 30%;
-    height: 90vh;
-    padding-top: 2%;
-    padding-right: 6%;
-  }
-
-  .input{
-    line-height: 2em;
-      /* background-color: blueviolet; */
-  }
-
-  @media screen and (max-width: 1180px) {
-    .column1, .column2 {
-      top:5%;  
-      width: 100%;
-      height: auto;
-      padding: 0;
-    }
-
-    .column2{
-        width: auto;
-        padding-top:1%;
-        right: 58%;
-        position: absolute;
-    }
-    .input{
-        line-height: 2em;
-    }
-  }
+canvas{
+    background-color: white;
+}
 
 #gx{
-    visibility: hidden;
+    display: none;
 }
 #ix{
-    visibility: hidden;
+    display: none;
 }
 #hx{
-    visibility: hidden;
+    display: none;
 }
 
 #rangeK{
-    visibility: hidden;
+    display: none;
 }
 
 #rangeL{
-    visibility: hidden;
+    display: none;
 }
 
-.text {
-    display: block;/* or inline-block */
+
+
+/* .text {
+    display: block;
     text-overflow: ellipsis;
     word-wrap: break-word;
     overflow: hidden;
     line-height: 1.8em;
-  }
-
+  }  */

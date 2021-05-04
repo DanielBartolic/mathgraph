@@ -99,7 +99,7 @@ function drawGrid(){
   for(var i=0; i<=num_lines_x; i++) {
     c.beginPath();
     c.lineWidth = 1;
-    c.strokeStyle = "#e9e9e9";
+    c.strokeStyle = "#ccc";
     
     if(i == num_lines_x) {
         c.moveTo(0, grid_size*i);
@@ -330,19 +330,19 @@ function showIX(){
 
 function addFunctionInput(){
   if(gx == false){
-    fgx.style.visibility = "visible";
+    fgx.style.display = "block";
     gx = true;
     showgxv = true;
     if (!cbgx.checked)
       showgxv = false;
   }else if(hx == false){
-    fhx.style.visibility = "visible";
+    fhx.style.display = "block";
     hx = true;
     showhxv = true;
     if (!cbhx.checked)
       showhxv = false;
   }else if(ix == false){
-    fix.style.visibility = "visible";
+    fix.style.display = "block";
     ix = true;
     showixv = true;
     if (!cbix.checked)
@@ -353,15 +353,15 @@ function addFunctionInput(){
 
 function removeFunctionInput(){
   if(ix){
-    fix.style.visibility = "hidden";
+    fix.style.display = "none";
     ix = false;
     showixv = false;
   }else if(hx){
-    fhx.style.visibility = "hidden";
+    fhx.style.display = "none";
     hx = false;
     showhxv = false;
   }else if(gx){
-    fgx.style.visibility = "hidden";
+    fgx.style.display = "none";
     gx = false;
     showgxv = false;
   }
@@ -370,10 +370,10 @@ function removeFunctionInput(){
 
 function addVariableInput(){
   if(rangeK == false){
-    vRangeK.style.visibility = "visible";
+    vRangeK.style.display = "block";
     rangeK = true;
   }else if(rangeL == false){
-    vRangeL.style.visibility = "visible";
+    vRangeL.style.display = "block";
     rangeL = true;
   }
   draw();
@@ -381,10 +381,10 @@ function addVariableInput(){
 
 function removeVariableInput(){
   if(rangeL){
-    vRangeL.style.visibility = "hidden";
+    vRangeL.style.display = "none";
     rangeL = false;
   }else if(rangeK){
-    vRangeK.style.visibility = "hidden";
+    vRangeK.style.display = "none";
     rangeK = false;
   }
   draw();
@@ -430,5 +430,12 @@ function variables(x){
 }
 
 
-
+function closeInputFunction(){
+  var input = document.getElementById('inputDisplay');
+  if(input.style.display != "none"){
+  input.style.display = "none";
+  }else{
+    input.style.display = "block";
+  }
+}
 

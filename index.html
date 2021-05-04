@@ -5,6 +5,7 @@
         <title>Graph Calculator</title>
         <script src="math.min.js"></script>
         <script src="jquery.min.js"></script>
+        
         <!-- <script src="nerdamer/nerdamer.core.js"></script>  -->
         <!-- LOAD ADD-ONS. These files contain extended functions. See documentation -->
         <!-- again assuming you've saved the files in root -->
@@ -16,54 +17,66 @@
     </head>
     <body>
 
+        
         <div class="column1">
+            <div class="readme">Please read the readme file on my github page - Daniel Bartolič</div>
+            <div id="mydiv">
+                <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+                <div ondblclick="closeInputFunction()" id="mydivheader">double click</div>
+              
+                <div class="input" id="inputDisplay">
+                    <div class="btnrow"> <button type="button" onclick="addFunctionInput()">+</button> <button type="button" onclick="removeFunctionInput()">-</button> </div>
+                    <div class="row1" id="fx"><input class="textfield" placeholder="function f(x)" id="inputFieldFunctionFX">
+                        <label class="switch">
+                            <input type="checkbox" id="cbShowFX" onclick="showFX()" checked>
+                            <span class="slider"></span>
+                          </label>
+                    </div>
+                    <div class="row1" id="gx"><input class="textfield" placeholder="function g(x)" id="inputFieldFunctionGX">
+                        <label class="switch">
+                            <input type="checkbox" id="cbShowGX" onclick="showGX()" checked>
+                            <span class="slider"></span>
+                          </label>
+                    </div>
+                    <div class="row1" id="hx"><input class="textfield" placeholder="function h(x)" id="inputFieldFunctionHX">
+                        <label class="switch">
+                            <input type="checkbox" id="cbShowHX" onclick="showHX()" checked>
+                            <span class="slider"></span>
+                          </label>
+                    </div>
+                    <div class="row1" id="ix"><input class="textfield" placeholder="function i(x)" id="inputFieldFunctionIX">
+                        <label class="switch">
+                            <input type="checkbox" id="cbShowIX" onclick="showIX()" checked>
+                            <span class="slider"></span>
+                          </label>
+                    </div>
+                    <div class="btnrow"> <button type="button" onclick="addVariableInput()">+</button> <button type="button" onclick="removeVariableInput()">-</button> </div>
+                    <div class="row2" id="rangeK" > variable k : <input class="range" type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableK(this.value/10)"><span id="outputK"></span></div>
+                    <div class="row2" id="rangeL"> variable l : <input class="range" type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableL((this.value/100))"><span id="outputL"></span></div>
+                    <div class="row3" > show grid : 
+                        <label class="switch">
+                            <input type="checkbox" id="cbShowGrid" onclick="cbGridFunction()" checked>
+                            <span class="slider"></span>
+                          </label>
+                     </div>
+                    <div class="row3" > coordinate size : <input class="range" type="range" min=1 max=6 value=3 id="range" oninput="sliderChange(this.value)"> </div>
+
+                </div>  
+            </div>                   
             <div class="canvas">
-                <canvas width="800" height="800" id="myCanvas"></canvas> 
+                <canvas width="2400" height="2400" id="myCanvas"></canvas> 
             </div>
-        </div>
-            <div class="column2">
-                <div class="input">
-                    <div> <button type="button" onclick="addFunctionInput()">+</button> <button type="button" onclick="removeFunctionInput()">-</button> </div>
-                    <div id="fx"><input placeholder="function f(x)" id="inputFieldFunctionFX"><input type="checkbox" id="cbShowFX" onclick="showFX()" checked></div>
-                    <div id="gx"><input placeholder="function g(x)" id="inputFieldFunctionGX"><input type="checkbox" id="cbShowGX" onclick="showGX()" checked></div>
-                    <div id="hx"><input placeholder="function h(x)" id="inputFieldFunctionHX"><input type="checkbox" id="cbShowHX" onclick="showHX()" checked></div>
-                    <div id="ix"><input placeholder="function i(x)" id="inputFieldFunctionIX"><input type="checkbox" id="cbShowIX" onclick="showIX()" checked></div>
-                    <div> <button type="button" onclick="addVariableInput()">+</button> <button type="button" onclick="removeVariableInput()">-</button> </div>
-                    <div id="rangeK" > variable k : <input class="range" type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableK(this.value/10)"><span id="outputK"></span></div>
-                    <div id="rangeL"> variable l : <input class="range" type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableL((this.value/100))"><span id="outputL"></span></div>
-                    <div> show grid : <input type="checkbox" id="cbShowGrid" onclick="cbGridFunction()" checked> </div>
-                    <div> coordinate size : <input class="range" type="range" min=1 max=6 value=3 id="range" oninput="sliderChange(this.value)"> </div>
+        
 
-                    <!-- <p class="text"> <b>Introduction:</b> this javascript program can visualize a mathematical function.
-                        It can work with up to four individual functions at once. You can
-                        try this feature by clicking on the <b>(+)</b> button on top. 
-                        You can always temporary hide or show a function by checking the box on the right of its
-                        declaration.<b> (-)</b> Will remove the latest function, if you do not want to use it anymore. Two buttons under the declarations
-                        will introduce variables <b>k(K)</b> and <b>l(L)</b>. <u><b>k</b> has a range between -10 and 10</u>  whereas <u><b>l</b> ranges from -1 to 1</u>.
-                        You can also change the system size and switch the grid on or off. A grid square has a standard side length of 1. Despite scaling the grid,
-                        the units will stay the same at all times. Grid ratio is 1:1.
-                    </p>
-                    <p class="text"> <b>Using the program:</b> Firstly, enter a desired function in the declaration input. When drawing a function, for example : <b>f(x) = x-3</b>, 
-                        input <b>y=x-3</b> or simply <b>x-3</b>. This will work with linear, rational, exponential, polynomial and even trigonometrial functions. Adding variables to
-                        a function is as simple as writing k or l (or both) in the input. For example <b>k*sin(x)</b>. Upon changing value of k, we can observe how the sine wave
-                        changes its amplitude.
-                    </p>
-                    <p class="text"> <b>Additional rules:</b> Standard algebraic operations apply. When adding use +, substracting -, dividing / and multiplying *. Writing characters
-                        together will not multiply, for example; you can not write x*x as xx or 3*x as 3x. Whenever you want to use a power of a number use ^ (x^2 or x^3). To square
-                        characters use sqrt(x), if you desire to use higher roots follow this example; x^(1/3) = this will demonstrate the third root of x. Program will
-                        recognize sin(x),asin(x),sec(x),cos(x),acos(x),csc(x),tan(x),atan(x),cot(x). Obviously you can modify their propreties by adding values. 
-                        To achieve the wanted output,
-                        especially with more complex functions you will have to use brackets ")(". Have fun using the program!
-                    </p>
-
-                    <p class="text"> <b>by Daniel Bartolič 4. Ra</b>
-                    </p> -->
+        
+                
 
                 </div>
             </div>
             
 
         <script src="myScript.js"></script>
+        <script src="drag.js"></script>
         
     </body>
 </html>
