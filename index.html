@@ -12,6 +12,7 @@
         <script src="nerdamer/Calculus.js"></script>
         <script src="nerdamer/Solve.js"></script> -->
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="inputStyle.css">
     </head>
     <body>
 
@@ -23,16 +24,17 @@
             <div class="column2">
                 <div class="input">
                     <div> <button type="button" onclick="addFunctionInput()">+</button> <button type="button" onclick="removeFunctionInput()">-</button> </div>
-                    <div id="fx"> function f(x) : <input id="inputFieldFunctionFX"><input type="checkbox" id="cbShowFX" onclick="showFX()" checked></div>
-                    <div id="gx"> function g(x) : <input id="inputFieldFunctionGX"><input type="checkbox" id="cbShowGX" onclick="showGX()" checked></div>
-                    <div id="hx"> function h(x) : <input id="inputFieldFunctionHX"><input type="checkbox" id="cbShowHX" onclick="showHX()" checked></div>
-                    <div id="ix"> function i(x) : <input id="inputFieldFunctionIX"><input type="checkbox" id="cbShowIX" onclick="showIX()" checked></div>
+                    <div id="fx"><input placeholder="function f(x)" id="inputFieldFunctionFX"><input type="checkbox" id="cbShowFX" onclick="showFX()" checked></div>
+                    <div id="gx"><input placeholder="function g(x)" id="inputFieldFunctionGX"><input type="checkbox" id="cbShowGX" onclick="showGX()" checked></div>
+                    <div id="hx"><input placeholder="function h(x)" id="inputFieldFunctionHX"><input type="checkbox" id="cbShowHX" onclick="showHX()" checked></div>
+                    <div id="ix"><input placeholder="function i(x)" id="inputFieldFunctionIX"><input type="checkbox" id="cbShowIX" onclick="showIX()" checked></div>
                     <div> <button type="button" onclick="addVariableInput()">+</button> <button type="button" onclick="removeVariableInput()">-</button> </div>
-                    <div id="rangeK" > variable k : <input type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableK(this.value/10)"><span id="outputK"></span></div>
-                    <div id="rangeL"> variable l : <input type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableL((this.value/100))"><span id="outputL"></span></div>
+                    <div id="rangeK" > variable k : <input class="range" type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableK(this.value/10)"><span id="outputK"></span></div>
+                    <div id="rangeL"> variable l : <input class="range" type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableL((this.value/100))"><span id="outputL"></span></div>
                     <div> show grid : <input type="checkbox" id="cbShowGrid" onclick="cbGridFunction()" checked> </div>
-                    <div> coordinate size : <input type="range" min=1 max=6 value=3 id="range" oninput="sliderChange(this.value)"> </div>
-                    <p class="text"> <b>Introduction:</b> this javascript program can visualize a mathematical function.
+                    <div> coordinate size : <input class="range" type="range" min=1 max=6 value=3 id="range" oninput="sliderChange(this.value)"> </div>
+
+                    <!-- <p class="text"> <b>Introduction:</b> this javascript program can visualize a mathematical function.
                         It can work with up to four individual functions at once. You can
                         try this feature by clicking on the <b>(+)</b> button on top. 
                         You can always temporary hide or show a function by checking the box on the right of its
@@ -55,7 +57,8 @@
                     </p>
 
                     <p class="text"> <b>by Daniel Bartolič 4. Ra</b>
-                    </p>
+                    </p> -->
+
                 </div>
             </div>
             
