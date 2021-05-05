@@ -489,7 +489,7 @@ function closeInputFunction(){
   header.innerHTML = "";
   header.style.width = "40px";
   header.style.height = "40px";
-  header.style.border = "#292934 solid 2px"
+  header.style.border = "#292934 solid 3px"
   divmain.style.border = "none";
   divmain.style.background = "none";
   header.style.background ="white";
@@ -500,7 +500,7 @@ function closeInputFunction(){
     header.innerHTML = "double click";
     header.style.width = "auto";
     header.style.height = "auto";
-    divmain.style.border = "2px solid #292934";
+    divmain.style.border = "3px solid #292934";
     header.style.border = "none";
     divmain.style.background="white";
   }
