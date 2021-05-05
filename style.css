@@ -41,12 +41,6 @@
   /* opacity: 0.7; */
 }
 
-#mydivheader:hover{
-  transition: ease-in .3s;
-  background-color: #292934;
-  /* border-color: blue; */
-}
-
 .input{
   color: #292934;
   padding-left: 5% ;
