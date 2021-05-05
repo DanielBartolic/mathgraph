@@ -1,10 +1,10 @@
 .textfield{
-  border: none;
-  background: #292934;
+  border:solid 2px #292934;
+  /* background: #292934; */
   opacity: 0.7;
   height: 30px;
   outline: none;
-  color: white;
+  color: #292934;
 }
 .textfield:hover{
   transition: .2s;
@@ -14,7 +14,7 @@
 
 button{
   color: white;
-    background: #292934;;
+    background: #292934;
     width: 30px;
     height: 30px;
     border: none;
@@ -33,7 +33,8 @@ button:hover{
     -webkit-appearance: none;
     width: 40%;
     height: 20px;
-    background: #ccc;
+    background: #292934;
+    border: #292934 solid 2px;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -49,14 +50,14 @@ button:hover{
     appearance: none;
     width: 20px;
     height: 20px;
-    background: blue;
+    background: white;
     cursor: pointer;
   }
   
   .range::-moz-range-thumb {
     width: 20px;
     height: 20px;
-    background: blue;
+    background: white;
     cursor: pointer;
   }
 
@@ -101,11 +102,11 @@ button:hover{
   }
   
   input:checked + .slider {
-    background-color: blue;
+    background-color: red;
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px blue;
+    box-shadow: 0 0 1px red;
   }
   
   input:checked + .slider:before {

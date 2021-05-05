@@ -482,27 +482,27 @@ function closeInputFunction(){
   var header = document.getElementById('mydivheader');
   var divmain = document.getElementById('mydiv');
   if(input.style.display != "none"){
+    header.style.borderRadius = "100%";
+    // divmain.style.background = "rgba(41, 41, 52, 0)"
   input.style.display = "none";
-  header.style.borderRadius = "100%";
   header.style.padding = "0px";
   header.innerHTML = "";
   header.style.width = "40px";
   header.style.height = "40px";
   header.style.border = "#292934 solid 2px"
-  divmain.style.background = "rgba(41, 41, 52, 0)"
-  divmain.style.border = "none"
-  // header.style.opacity="1";
-  }else{
+  divmain.style.border = "none";
+  divmain.style.background = "none";
+  header.style.background ="white";
+  }else{ //KO JE ODPRT
     input.style.display = "block";
     header.style.borderRadius = "0px";
     header.style.padding = "6px,10px,6px,10pxpx";
     header.innerHTML = "double click";
     header.style.width = "auto";
     header.style.height = "auto";
-    divmain.style.background = "rgba(41, 41, 52, 1)"
-    divmain.style.border = "none"
-    header.style.border = "none"
-    // header.style.opacity="0.7";
+    divmain.style.border = "2px solid #292934";
+    header.style.border = "none";
+    divmain.style.background="white";
   }
 
 }
