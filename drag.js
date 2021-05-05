@@ -1,5 +1,6 @@
 // Make the DIV element draggable:
 dragElement(document.getElementById("mydiv"));
+dragElement(document.getElementById("canvasdiv"));
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -33,6 +34,22 @@ function dragElement(elmnt) {
     // set the element's new position:
     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    if(elmnt.id=="canvasdiv"){
+    if((elmnt.offsetTop - pos2) > 0){
+      elmnt.style.top = 0 + "px";
+    }
+    if((elmnt.offsetLeft- pos1) > 0){
+      elmnt.style.left = 0 + "px";
+    }
+
+    if((elmnt.offsetTop)+2400 < window.innerHeight){
+      elmnt.style.top= window.innerHeight-2400 + "px";
+    }
+
+    if((elmnt.offsetLeft)+2400 < window.innerWidth){
+      elmnt.style.left= window.innerWidth-2400 + "px";
+    }
+  }
   }
 
   function closeDragElement() {

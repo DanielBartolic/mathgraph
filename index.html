@@ -19,7 +19,7 @@
 
         
         <div class="column1">
-            <div class="readme">Please read the <a  href="https://github.com/DanielBartolic/mathgraph/blob/main/readme.rtf" target="_blank">readme</a> file on my github page - Daniel Bartolič</div>
+            <div class="readme">read <a  href="https://github.com/DanielBartolic/mathgraph/blob/main/readme.rtf" target="_blank">instructions</a></div>
             <div id="mydiv">
                 <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
                 <div ondblclick="closeInputFunction()" id="mydivheader">double click</div>
@@ -59,11 +59,11 @@
                             <span class="slider"></span>
                           </label>
                      </div>
-                    <div class="row3" > coordinate size : <input class="range" type="range" min=1 max=6 value=3 id="range" oninput="sliderChange(this.value)"> </div>
+                    <div class="row3" > coordinate size : <input class="range" type="range" min=1 max=6 value=3 id="rangeScale" oninput="sliderChange(this.value)"> </div>
 
                 </div>  
             </div>                   
-            <div class="canvas">
+            <div class="canvas" id="canvasdiv" onwheel="sliderChange(0,event)">
                 <canvas width="2400" height="2400" id="myCanvas"></canvas> 
             </div>
         

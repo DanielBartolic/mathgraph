@@ -23,6 +23,7 @@ rangeK = false,
 rangeL = false,
 variableK = 0,
 variableL = 0,
+previousScale = 3,
 
 
 canvas_height = canvas.height,
@@ -56,7 +57,6 @@ outputK.innerHTML = variableK;
 outputL.innerHTML = variableL;
 
 function draw(){
-  console.log(showgxv);
   if(!rangeK)
     variableK = 0;
   if(!rangeL)
@@ -122,7 +122,7 @@ function drawGrid(){
 function drawAxis(){
   var i = x_axis_distance_grid_lines;
   c.beginPath();
-  c.lineWidth = 1;
+  c.lineWidth = 1.5;
   c.strokeStyle = "#000000";
   c.moveTo(0, grid_size*i+0.5);
   c.lineTo(canvas_width, grid_size*i+0.5);
@@ -172,7 +172,7 @@ yMax = 1 * coordinateSystemSizeY;
         yPixel = percentY * canvas.height;
 
           dist = Math.sqrt( Math.pow((previousX-xPixel), 2) + Math.pow((previousY-yPixel), 2) );
-          if(dist > canvas_height){
+          if(dist > canvas_height/2){
             c.closePath();
           }else{
             c.moveTo(previousX,previousY);
@@ -390,21 +390,68 @@ function removeVariableInput(){
   draw();
 }
 
-function sliderChange(val) {
-  
-  switch(val) {
+function sliderChange(val, wheelValue) {
+
+  if(val!= 0){
+    switch(val) {
     
-            case "1": val= 20 ; break;
-            case "2": val = 40 ; break;
-            case "3": val = 50 ; break;
-            case "4": val = 80 ; break;
-            case "5": val = 100 ; break;
-            case "6": val = 200 ; break;
-            
-          }
-          variables(val);
+      case "1": val= 20 ; break;
+          case "2": val = 40 ; break;
+          case "3": val = 50 ; break;
+          case "4": val = 80 ; break;
+          case "5": val = 100 ; break;
+          case "6": val = 200 ; break;
+      
+    }
+  }else if(wheelValue.deltaY<0){
+
+      val = previousScale+1;
+      if(val>6)
+        val=6;
+        document.getElementById("rangeScale").value = val;
+        switch(val) {
+    
+          case 1: val= 20 ; break;
+          case 2: val = 40 ; break;
+          case 3: val = 50 ; break;
+          case 4: val = 80 ; break;
+          case 5: val = 100 ; break;
+          case 6: val = 200 ; break;
+          
+        }
+    }else if(wheelValue.deltaY>0){
+      val = previousScale-1;
+      if(val<1)
+        val=1;
+
+        document.getElementById("rangeScale").value = val;
+        switch(val) {
+    
+          case 1: val= 20 ; break;
+          case 2: val = 40 ; break;
+          case 3: val = 50 ; break;
+          case 4: val = 80 ; break;
+          case 5: val = 100 ; break;
+          case 6: val = 200 ; break;
+          
+        }
+    }
+    // console.log(val,previousScale);
+    variables(val);
+    switch(val) {
+    
+      case 20: val= 1 ; break;
+      case 40: val = 2 ; break;
+      case 50: val = 3 ; break;
+      case 80: val = 4 ; break;
+      case 100: val = 5 ; break;
+      case 200: val = 6 ; break;
+    }
+    previousScale=val;
+    
           draw();
-}
+
+  }
 
 function changeVariableK(val){
   variableK = val;
@@ -432,10 +479,35 @@ function variables(x){
 
 function closeInputFunction(){
   var input = document.getElementById('inputDisplay');
+  var header = document.getElementById('mydivheader');
+  var divmain = document.getElementById('mydiv');
   if(input.style.display != "none"){
   input.style.display = "none";
+  header.style.borderRadius = "100%";
+  header.style.padding = "0px";
+  header.innerHTML = "";
+  header.style.width = "40px";
+  header.style.height = "40px";
+  header.style.border = "#292934 solid 2px"
+  divmain.style.background = "rgba(41, 41, 52, 0)"
+  divmain.style.border = "none"
+  // header.style.opacity="1";
   }else{
     input.style.display = "block";
+    header.style.borderRadius = "0px";
+    header.style.padding = "6px,10px,6px,10pxpx";
+    header.innerHTML = "double click";
+    header.style.width = "auto";
+    header.style.height = "auto";
+    divmain.style.background = "rgba(41, 41, 52, 1)"
+    divmain.style.border = "none"
+    header.style.border = "none"
+    // header.style.opacity="0.7";
   }
+
+}
+
+function myFunction2(event) {
+  console.log(event.deltaY);
 }
 
