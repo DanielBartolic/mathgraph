@@ -2,10 +2,10 @@ var canvas = document.getElementById('myCanvas'),
 fgx = document.getElementById('gx'),
 fhx = document.getElementById('hx'),
 fix = document.getElementById('ix'),
-vRangeK = document.getElementById('rangeK'),
-vRangeL = document.getElementById('rangeL'),
-outputK = document.getElementById('outputK'),
-outputL = document.getElementById('outputL'),
+vRangeB = document.getElementById('rangeB'),
+vRangeV = document.getElementById('rangeV'),
+outputB = document.getElementById('outputB'),
+outputV = document.getElementById('outputV'),
 cbgx = document.getElementById('cbShowGX'),
 cbhx = document.getElementById('cbShowHX'),
 cbix = document.getElementById('cbShowIG'),
@@ -19,10 +19,10 @@ showfxv = true,
 showgxv = true,
 showhxv = true,
 showixv = true,
-rangeK = false,
-rangeL = false,
-variableK = 0,
-variableL = 0,
+rangeB = false,
+rangeV = false,
+variableB = 0,
+variableV = 0,
 previousScale = 3,
 
 
@@ -53,14 +53,14 @@ c.clearRect(0, 0, canvas.width, canvas.height);
   drawGrid();
   drawAxis();
 initTextField();
-outputK.innerHTML = variableK;
-outputL.innerHTML = variableL;
+outputB.innerHTML = variableB;
+outputV.innerHTML = variableV;
 
 function draw(){
-  if(!rangeK)
-    variableK = 0;
-  if(!rangeL)
-    variableL = 0;
+  if(!rangeB)
+    variableB = 0;
+  if(!rangeV)
+    variableV = 0;
   // calcRoots(expr);
   c.clearRect(0, 0, canvas.width, canvas.height);
   drawGrid();
@@ -134,7 +134,7 @@ function drawAxis(){
 
 
 function drawCurve(val,color){
-    tree = math.parse(val.replace(/k/gi,variableK).replace(/l/gi,variableL),scope);
+    tree = math.parse(val.replace(/b/gi,variableB).replace(/v/gi,variableV),scope);4
 
 
 var
@@ -191,7 +191,7 @@ yMax = 1 * coordinateSystemSizeY;
 }
 
 function drawLimits(val){
-  tree = math.parse(val.replace(/k/gi,variableK).replace(/l/gi,variableL),scope);
+  tree = math.parse(val.replace(/b/gi,variableB).replace(/v/gi,variableV),scope);
     var
     i,xPixel,yPixel,
     percentX,percentY,
@@ -369,23 +369,23 @@ function removeFunctionInput(){
 }
 
 function addVariableInput(){
-  if(rangeK == false){
-    vRangeK.style.display = "block";
-    rangeK = true;
-  }else if(rangeL == false){
-    vRangeL.style.display = "block";
-    rangeL = true;
+  if(rangeB == false){
+    vRangeB.style.display = "block";
+    rangeB = true;
+  }else if(rangeV == false){
+    vRangeV.style.display = "block";
+    rangeV = true;
   }
   draw();
 }
 
 function removeVariableInput(){
-  if(rangeL){
-    vRangeL.style.display = "none";
-    rangeL = false;
-  }else if(rangeK){
-    vRangeK.style.display = "none";
-    rangeK = false;
+  if(rangeV){
+    vRangeV.style.display = "none";
+    rangeV = false;
+  }else if(rangeB){
+    vRangeB.style.display = "none";
+    rangeB = false;
   }
   draw();
 }
@@ -453,15 +453,15 @@ function sliderChange(val, wheelValue) {
 
   }
 
-function changeVariableK(val){
-  variableK = val;
-  outputK.innerHTML = variableK;
+function changeVariableB(val){
+  variableB = val;
+  outputB.innerHTML = variableB;
   draw();
 }
 
-function changeVariableL(val){
-  variableL = val;
-  outputL.innerHTML = variableL;
+function changeVariableV(val){
+  variableV = val;
+  outputV.innerHTML = variableV;
   draw();
 }
 

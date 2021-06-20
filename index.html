@@ -5,6 +5,7 @@
         <title>Graph Calculator</title>
         <script src="math.min.js"></script>
         <script src="jquery.min.js"></script>
+
         
         <!-- <script src="nerdamer/nerdamer.core.js"></script>  -->
         <!-- LOAD ADD-ONS. These files contain extended functions. See documentation -->
@@ -14,6 +15,7 @@
         <script src="nerdamer/Solve.js"></script> -->
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="stylesheet" type="text/css" href="inputStyle.css">
+        <link rel="icon" type="image/png" href="/icon.png"/>
     </head>
     <body>
 
@@ -51,8 +53,8 @@
                           </label>
                     </div>
                     <div class="btnrow"> <button type="button" onclick="addVariableInput()">+</button> <button type="button" onclick="removeVariableInput()">-</button> </div>
-                    <div class="row2" id="rangeK" > variable k : <input class="range" type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableK(this.value/10)"><span id="outputK"></span></div>
-                    <div class="row2" id="rangeL"> variable l : <input class="range" type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableL((this.value/100))"><span id="outputL"></span></div>
+                    <div class="row2" id="rangeB" > variable b : <input class="range" type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableB(this.value/10)"><span id="outputB"></span></div>
+                    <div class="row2" id="rangeV"> variable v : <input class="range" type="range" min=-100 max=100 value=0 id="range" oninput="changeVariableV((this.value/100))"><span id="outputV"></span></div>
                     <div class="row3" > show grid : 
                         <label class="switch">
                             <input type="checkbox" id="cbShowGrid" onclick="cbGridFunction()" checked>
